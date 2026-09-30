@@ -17,7 +17,6 @@ print(f"HTTP сервер запущен на {HOST}:{PORT}...")
 while True:
     # Принимаем соединение от клиента
     client_connection, client_address = server_socket.accept()
-    print(f'Подключение от {client_address}')
 
     with open("index.html", "rb") as f: # читаем в бинарном режиме
         html_bytes = f.read()
