@@ -1,7 +1,6 @@
 # базовый класс для написания http-сервера
 import socket
 from urllib.parse import parse_qs, urlparse
-import sys
 
 
 class MyHTTPServer:
@@ -24,7 +23,6 @@ class MyHTTPServer:
             conn.close()
 
     def serve_client(self, conn):
-
         # 2. Обработка клиентского подключения
         file = conn.makefile("r", encoding="utf-8")
         request = file.readline().strip()
@@ -99,7 +97,7 @@ class MyHTTPServer:
 
 if __name__ == '__main__':
     host = "localhost"
-    port = 8080
+    port = 9090
     name = "-Gradebook-"
     serv = MyHTTPServer(host, port, name)
     try:

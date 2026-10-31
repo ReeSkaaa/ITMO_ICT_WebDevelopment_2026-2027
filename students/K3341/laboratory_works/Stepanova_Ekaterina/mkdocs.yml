@@ -9,3 +9,4 @@ markdown_extensions:
 nav:
   - Главная: index.md
   - Лабораторная работа №1: laboratory_work_1/report.md
+  - Лабораторная работа №2: laboratory_work_2/report.md

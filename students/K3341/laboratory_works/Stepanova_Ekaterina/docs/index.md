@@ -6,3 +6,4 @@
 ## Отчеты по лабораторным работам
 
 - [ЛР1. Работа с сокетами](laboratory_work_1/report.md)
+- [ЛР2. Работа с сокетами](laboratory_work_2/report.md)
