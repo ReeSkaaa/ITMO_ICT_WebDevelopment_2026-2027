@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
       
 
@@ -628,6 +628,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laboratory_work_3/report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лабораторная работа №3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -1008,13 +1035,13 @@
 server_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 # привязываем сокет к адресу и порту
-server_sock.bind((&#39;localhost&#39;, 8080))
-print(&#39;Сервер запущен&#39;)
+server_sock.bind(('localhost', 8080))
+print('Сервер запущен')
 
 # принимаем сообщение от клиента
 data, addr = server_sock.recvfrom(1024)
-print(f&quot;Сообщение от клиента:\n {data.decode(&#39;utf-8&#39;)}&quot;)
-server_sock.sendto(b&#39;Hello, client&#39;, addr)
+print(f"Сообщение от клиента:\n {data.decode('utf-8')}")
+server_sock.sendto(b'Hello, client', addr)
 
 server_sock.close()
 </code></pre></div>
@@ -1027,10 +1054,10 @@ server_sock.close()
 client_sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 # отправляем сообщение sendto(bytes, address)
-client_sock.sendto(b&#39;Hello, server&#39;, (&#39;localhost&#39;, 8080))
+client_sock.sendto(b'Hello, server', ('localhost', 8080))
 # получаем ответ от сервера
 data, addr = client_sock.recvfrom(1024)
-print(f&quot;Сообщение от сервера\n {data.decode(&#39;utf-8&#39;)}&quot;)
+print(f"Сообщение от сервера\n {data.decode('utf-8')}")
 
 client_sock.close()
 </code></pre></div>
@@ -1100,20 +1127,20 @@ def pythagorean_theorem(data):
     return c
 
 
-server_sock.bind((&#39;&#39;, 8080))  # порт 8080 на всех доступных интерфейсах
+server_sock.bind(('', 8080))  # порт 8080 на всех доступных интерфейсах
 server_sock.listen(1)
 
 while True:
     conn, addr = server_sock.accept()
-    print(f&quot;{addr} is connected&quot;)
+    print(f"{addr} is connected")
     # считываем данные клиента
     data = conn.recv(1024)
-    print(f&quot;Полученные данные от пользователя: {data.decode(&#39;utf-8&#39;)}&quot;)
+    print(f"Полученные данные от пользователя: {data.decode('utf-8')}")
     if not data:
         break
 
-    conn.send(str(pythagorean_theorem(data)).encode(&#39;utf-8&#39;))
-    print(&#39;Сервер останавливается&#39;)
+    conn.send(str(pythagorean_theorem(data)).encode('utf-8'))
+    print('Сервер останавливается')
     conn.close()
 </code></pre></div>
 </details>
@@ -1124,13 +1151,13 @@ while True:
 
 client_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-client_sock.connect((&#39;localhost&#39;, 8080))
+client_sock.connect(('localhost', 8080))
 
-inp = input(&quot;Введите величины катов a и b через пробел: &quot;)
-client_sock.send(inp.encode(&#39;utf-8&#39;))
+inp = input("Введите величины катов a и b через пробел: ")
+client_sock.send(inp.encode('utf-8'))
 
 data = client_sock.recv(1024)
-print(f&quot;Ответ от сервера: c = {data.decode(&#39;utf-8&#39;)}&quot;)
+print(f"Ответ от сервера: c = {data.decode('utf-8')}")
 
 client_sock.close()
 </code></pre></div>
@@ -1180,7 +1207,7 @@ client_sock.close()
 <div class="highlight"><pre><span></span><code>import socket
 
 # Параметры сервера
-HOST = &#39;localhost&#39;  # Адрес хоста (localhost для локальных соединений)
+HOST = 'localhost'  # Адрес хоста (localhost для локальных соединений)
 PORT = 9090         # Порт, на котором будет работать сервер
 
 # Создаем сокет
@@ -1191,27 +1218,27 @@ server_socket.bind((HOST, PORT))
 
 # Начинаем слушать входящие соединения
 server_socket.listen(5)
-print(f&quot;HTTP сервер запущен на {HOST}:{PORT}...&quot;)
+print(f"HTTP сервер запущен на {HOST}:{PORT}...")
 
 while True:
     # Принимаем соединение от клиента
     client_connection, client_address = server_socket.accept()
 
-    with open(&quot;index.html&quot;, &quot;rb&quot;) as f: # читаем в бинарном режиме
+    with open("index.html", "rb") as f: # читаем в бинарном режиме
         html_bytes = f.read()
 
 
     # Формируем HTTP-ответ с заголовками и HTML-контентом
     http_response = (
-        &quot;HTTP/1.1 200 OK\r\n&quot;
-        &quot;Content-Type: text/html; charset=UTF-8\r\n&quot;
-        f&quot;Content-Length: {len(html_bytes)}\r\n&quot;
-        &quot;Connection: close\r\n&quot;
-        &quot;\r\n&quot;
+        "HTTP/1.1 200 OK\r\n"
+        "Content-Type: text/html; charset=UTF-8\r\n"
+        f"Content-Length: {len(html_bytes)}\r\n"
+        "Connection: close\r\n"
+        "\r\n"
     )
 
     # Отправляем HTTP-ответ клиенту
-    client_connection.sendall(http_response.encode(&#39;utf-8&#39;) + html_bytes)
+    client_connection.sendall(http_response.encode('utf-8') + html_bytes)
 
     # Закрываем соединение
     client_connection.close()
@@ -1285,9 +1312,9 @@ import threading
 
 tcp_server_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # привяжем сокет к адресу и порту
-tcp_server_sock.bind((&quot;localhost&quot;, 8080))
+tcp_server_sock.bind(("localhost", 8080))
 tcp_server_sock.listen()
-print(&quot;Сервер запущен.....&quot;)
+print("Сервер запущен.....")
 
 # словарь, где сервер будет хранить пользователей: соединение -&gt; имя
 users = {}
@@ -1302,21 +1329,21 @@ def broadcast(message, conn):
 def handle_client(conn):
     # первое сообщение от клиента - его имя
     users[conn] = conn.recv(1024).decode()
-    message = f&quot;Пользователь {users[conn]} присоединился к чату&quot;
+    message = f"Пользователь {users[conn]} присоединился к чату"
     broadcast(message, conn)
     print(message)
 
     while True:
         data = conn.recv(1024)
-        # пустые данные значит клиент закрыл соединение, &#39;/exit&#39; значит вышел сам
-        if not data or data.decode() == &#39;/exit&#39;:
-            message = f&#39;Пользователь {users[conn]} покинул чат&#39;
+        # пустые данные значит клиент закрыл соединение, '/exit' значит вышел сам
+        if not data or data.decode() == '/exit':
+            message = f'Пользователь {users[conn]} покинул чат'
             broadcast(message, conn)
             print(message)
             del users[conn]
             conn.close()
             break
-        message = f&quot;({users[conn]}): {data.decode()}&quot;
+        message = f"({users[conn]}): {data.decode()}"
         broadcast(message, conn)
         print(message)
 
@@ -1335,13 +1362,13 @@ while True:
 <div class="highlight"><pre><span></span><code>import socket
 import threading
 
-SERVER_ADDR = (&quot;localhost&quot;, 8080)
+SERVER_ADDR = ("localhost", 8080)
 
 tcp_client_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 tcp_client_sock.connect(SERVER_ADDR)
 
 # узнать имя пользователя
-username = input(&quot;Введите свое имя: &quot;)
+username = input("Введите свое имя: ")
 tcp_client_sock.send(username.encode())
 
 
@@ -1360,9 +1387,9 @@ thread.start()
 
 while True:
     message = input()
-    if message.strip() == &#39;/exit&#39;:
-        tcp_client_sock.send(&#39;/exit&#39;.encode())
-        print(&quot;Вы вышли из чата!&quot;)
+    if message.strip() == '/exit':
+        tcp_client_sock.send('/exit'.encode())
+        print("Вы вышли из чата!")
         tcp_client_sock.close()
         break
     else:
@@ -1409,8 +1436,8 @@ while True:
 <p>Для хранения оценок используется словарь <code>grades</code>, где ключом является название дисциплины, а значением — список оценок.</p>
 <p>Например:</p>
 <div class="highlight"><pre><span></span><code>{
-    &quot;Математика&quot;: [4, 5, 5],
-    &quot;Программирование&quot;: [5, 4]
+    "Математика": [4, 5, 5],
+    "Программирование": [5, 4]
 }
 </code></pre></div>
 <p>Сервер самостоятельно разбирает HTTP-запрос: определяет метод, путь, заголовки и тело запроса.</p>
@@ -1436,7 +1463,7 @@ class MyHTTPServer:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.bind((self.host, self.port))
         sock.listen()
-        print(f&quot;Сервер запущен на хост: {self.host} порт: {self.port} &quot;)
+        print(f"Сервер запущен на хост: {self.host} порт: {self.port} ")
         while True:
             conn, addr = sock.accept()
             self.serve_client(conn)
@@ -1445,17 +1472,17 @@ class MyHTTPServer:
     def serve_client(self, conn):
 
         # 2. Обработка клиентского подключения
-        file = conn.makefile(&quot;r&quot;, encoding=&quot;utf-8&quot;)
+        file = conn.makefile("r", encoding="utf-8")
         request = file.readline().strip()
         if not request:
             return
         print(request)
         method, path, params = self.parse_request(request)
         headers = self.parse_headers(file)
-        print(method, path, &#39;-------------------&#39;)
-        body = &quot;&quot;
-        if &quot;content-length&quot; in headers:
-            body = file.read(int(headers[&quot;content-length&quot;]))
+        print(method, path, '-------------------')
+        body = ""
+        if "content-length" in headers:
+            body = file.read(int(headers["content-length"]))
         status, html = self.handle_request(method, body)
         self.send_response(conn, status, html)
 
@@ -1474,17 +1501,17 @@ class MyHTTPServer:
             line = file.readline().strip()
             if not line:
                 break
-            key, value = line.split(&quot;:&quot;, 1)
+            key, value = line.split(":", 1)
             headers[key.strip().lower()] = value.strip()
         return headers
 
     # 4. Функция для обработки headers. Необходимо прочитать все заголовки после первой строки до появления пустой строки и сохранить их в массив.
 
     def handle_request(self, method, body):
-        if method == &quot;POST&quot;:
+        if method == "POST":
             data = parse_qs(body)
-            subject = data.get(&quot;subject&quot;, [&quot;&quot;])[0].strip()
-            grade = data.get(&quot;grade&quot;, [&quot;&quot;])[0].strip()
+            subject = data.get("subject", [""])[0].strip()
+            grade = data.get("grade", [""])[0].strip()
             if subject and grade.isdigit():
                 self.grades.setdefault(subject, []).append(int(grade))
                 print(self.grades)
@@ -1493,33 +1520,33 @@ class MyHTTPServer:
     # 5. Функция для обработки url в соответствии с нужным методом. В случае данной работы, нужно будет создать набор условий, который обрабатывает GET или POST запрос. GET запрос должен возвращать данные. POST запрос должен записывать данные на основе переданных параметров.
 
     def send_response(self, conn, status, body):
-        body_bytes = body.encode(&#39;utf-8&#39;)
-        head = (f&quot;HTTP/1.1 {status} OK\r\n&quot;
-                &quot;Content-Type: text/html; charset=UTF-8\r\n&quot;
-                f&quot;Content-Length: {len(body_bytes)}\r\n&quot;
-                &quot;Connection: close\r\n&quot;
-                &quot;\r\n&quot;)
-        conn.sendall(head.encode(&quot;utf-8&quot;) + body_bytes)
+        body_bytes = body.encode('utf-8')
+        head = (f"HTTP/1.1 {status} OK\r\n"
+                "Content-Type: text/html; charset=UTF-8\r\n"
+                f"Content-Length: {len(body_bytes)}\r\n"
+                "Connection: close\r\n"
+                "\r\n")
+        conn.sendall(head.encode("utf-8") + body_bytes)
 
     def render_page(self):
-        grades_html = &quot;&quot;
+        grades_html = ""
         for subject, marks in self.grades.items():
-            grades_html += f&quot;&lt;p&gt;{subject}: {&#39;, &#39;.join(str(m) for m in marks)}&lt;/p&gt;&quot;
-        return &quot;&quot;&quot;&lt;h1&gt;Журнал оценок&lt;/h1&gt;
-               &lt;form method=&quot;post&quot; action=&quot;/&quot;&gt;
-                   &lt;input type=&quot;text&quot; name=&quot;subject&quot; placeholder=&quot;Дисциплина&quot;&gt;
-                   &lt;input type=&quot;text&quot; name=&quot;grade&quot; placeholder=&quot;Оценка&quot;&gt;
-                   &lt;button type=&quot;submit&quot;&gt;Сохранить&lt;/button&gt;
+            grades_html += f"&lt;p&gt;{subject}: {', '.join(str(m) for m in marks)}&lt;/p&gt;"
+        return """&lt;h1&gt;Журнал оценок&lt;/h1&gt;
+               &lt;form method="post" action="/"&gt;
+                   &lt;input type="text" name="subject" placeholder="Дисциплина"&gt;
+                   &lt;input type="text" name="grade" placeholder="Оценка"&gt;
+                   &lt;button type="submit"&gt;Сохранить&lt;/button&gt;
                &lt;/form&gt;
-               &quot;&quot;&quot; + grades_html
+               """ + grades_html
 
 
 # 6. Функция для отправки ответа. Необходимо записать в соединение status line вида HTTP/1.1 &lt;status_code&gt; &lt;reason&gt;. Затем, построчно записать заголовки и пустую строку, обозначающую конец секции заголовков.
 
-if __name__ == &#39;__main__&#39;:
-    host = &quot;localhost&quot;
+if __name__ == '__main__':
+    host = "localhost"
     port = 8080
-    name = &quot;-Gradebook-&quot;
+    name = "-Gradebook-"
     serv = MyHTTPServer(host, port, name)
     try:
         serv.serve_forever()
@@ -1595,10 +1622,10 @@ if __name__ == &#39;__main__&#39;:
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
     
   </body>

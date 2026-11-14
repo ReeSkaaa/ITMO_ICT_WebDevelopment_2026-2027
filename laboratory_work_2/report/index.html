@@ -12,12 +12,14 @@
         <link rel="prev" href="../../laboratory_work_1/report/">
       
       
+        <link rel="next" href="../../laboratory_work_3/report/">
+      
       
         
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
     
     
       
@@ -25,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
       
       
 
@@ -354,6 +356,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laboratory_work_3/report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лабораторная работа №3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -518,7 +547,7 @@ class Ownership(models.Model):
 </ol>
 <p><code>python manage.py makemigrations</code></p>
 <p>Вывод:</p>
-<div class="highlight"><pre><span></span><code>  Migrations for &#39;project_first_app&#39;:
+<div class="highlight"><pre><span></span><code>  Migrations for 'project_first_app':
   project_first_app\migrations\0001_initial.py
     + Create model Car
     + Create model CarOwner
@@ -674,8 +703,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path(&#39;admin/&#39;, admin.site.urls),
-    path(&#39;&#39;, include(&#39;project_first_app.urls&#39;)),  
+    path('admin/', admin.site.urls),
+    path('', include('project_first_app.urls')),  
 ]
 </code></pre></div>
 <p>include() подключает список маршрутов приложения по префиксу '' (то есть без изменений). Если бы вместо '' был указан '
@@ -686,7 +715,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path(&#39;owner/&lt;int:owner_id&gt;/&#39;, views.owner_detail),  
+    path('owner/&lt;int:owner_id&gt;/', views.owner_detail),  
 ]
 </code></pre></div>
 <p><int:owner_id> — конвертер типов. Django извлечёт из этой части URL целое число, отклонив запрос (вернёт 404) для
@@ -710,7 +739,7 @@ class CarOwner(models.Model):
 
     # для логов
     def __str__(self):
-        return f&quot;{self.surname} {self.name}&quot;
+        return f"{self.surname} {self.name}"
 
 class Car(models.Model):
     license_plate = models.CharField(max_length=15)
@@ -718,10 +747,10 @@ class Car(models.Model):
     model = models.CharField(max_length=20)
     color = models.CharField(max_length=30, null=True, blank=True)
 
-    owners = models.ManyToManyField(CarOwner, through=&#39;Ownership&#39;)
+    owners = models.ManyToManyField(CarOwner, through='Ownership')
 
     def __str__(self):
-        return f&quot;Автомобиль {self.brand} с номером {self.license_plate}&quot;
+        return f"Автомобиль {self.brand} с номером {self.license_plate}"
 
 
 
@@ -733,18 +762,18 @@ class DrivingLicence(models.Model):
     date = models.DateField()
 
     def __str__(self):
-        return f&quot;Права {self.license_number} ({self.owner.surname})&quot;
+        return f"Права {self.license_number} ({self.owner.surname})"
 
 
 class Ownership(models.Model):
-    &#39;&#39;&#39;many:many&#39;&#39;&#39;
+    '''many:many'''
     owner = models.ForeignKey(CarOwner, null=True, blank=True, on_delete=models.CASCADE)
     car = models.ForeignKey(Car, null=True, blank = True, on_delete=models.CASCADE)
     date_start = models.DateField()
     date_end = models.DateField(null=True, blank = True)
 
     def __str__(self):
-        return f&quot;{self.owner.name} {self.owner.surname} владеет {self.car.model} номер {self.car.license_plate}&quot;
+        return f"{self.owner.name} {self.owner.surname} владеет {self.car.model} номер {self.car.license_plate}"
 </code></pre></div>
 <h3 id="2_1">Задание 2</h3>
 <p>Реализуем вывод всех владельцев функционально(FBV).
@@ -778,35 +807,35 @@ forms.CharField(...) не нужно.</p>
 </ol>
 <p>Код реализации во <code>views.py</code> (до глобального рефакторинга на AbstractUser):</p>
 <div class="highlight"><pre><span></span><code>def create_owner(request):
-    if request.method == &#39;POST&#39;:
+    if request.method == 'POST':
         form = CarOwnerForm(request.POST)
         if form.is_valid():
             form.save()  # Автоматически создает объект в базе данных
-            return redirect(&#39;owners_list&#39;)
+            return redirect('owners_list')
     else:
         form = CarOwnerForm()
-    return render(request, &#39;owners/create_owner.html&#39;, {&#39;form&#39;: form})
+    return render(request, 'owners/create_owner.html', {'form': form})
 </code></pre></div>
 <p>Редактирование и удаление владельца</p>
 <h3 id="_1">Редактирование и удаление владельца</h3>
 <p>Помимо добавления нового владельца, в приложении реализованы функции редактирования и удаления существующих владельцев.</p>
 <p>Для редактирования используется функциональное представление <code>owner_update</code>. Сначала с помощью функции
 <code>get_object_or_404</code> из базы данных получается объект <code>CarOwner</code> по переданному идентификатору:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">owner_update</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">owner_update</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span class="p">):</span>
     <span class="n">owner</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">CarOwner</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">pk</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">'POST'</span><span class="p">:</span>
         <span class="n">form</span> <span class="o">=</span> <span class="n">CarOwnerForm</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">POST</span><span class="p">,</span> <span class="n">instance</span><span class="o">=</span><span class="n">owner</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
             <span class="n">form</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;owners_list&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">'owners_list'</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">form</span> <span class="o">=</span> <span class="n">CarOwnerForm</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="n">owner</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">render</span><span class="p">(</span>
         <span class="n">request</span><span class="p">,</span>
-        <span class="s1">&#39;owners/create_owner.html&#39;</span><span class="p">,</span>
-        <span class="p">{</span><span class="s1">&#39;form&#39;</span><span class="p">:</span> <span class="n">form</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Редактировать владельца&#39;</span><span class="p">}</span>
+        <span class="s1">'owners/create_owner.html'</span><span class="p">,</span>
+        <span class="p">{</span><span class="s1">'form'</span><span class="p">:</span> <span class="n">form</span><span class="p">,</span> <span class="s1">'title'</span><span class="p">:</span> <span class="s1">'Редактировать владельца'</span><span class="p">}</span>
     <span class="p">)</span>
 </code></pre></div>
 <p>При GET-запросе форма заполняется текущими данными выбранного владельца. При POST-запросе данные из формы передаются в
@@ -814,17 +843,17 @@ forms.CharField(...) не нужно.</p>
 <p>После успешной проверки данных вызывается <code>form.save()</code>, после чего выполняется перенаправление на страницу со списком
 владельцев.</p>
 <p>Для удаления владельца реализовано отдельное функциональное представление:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">owner_delete</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">owner_delete</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">pk</span><span class="p">):</span>
     <span class="n">owner</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">CarOwner</span><span class="p">,</span> <span class="n">pk</span><span class="o">=</span><span class="n">pk</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">&#39;POST&#39;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">request</span><span class="o">.</span><span class="n">method</span> <span class="o">==</span> <span class="s1">'POST'</span><span class="p">:</span>
         <span class="n">owner</span><span class="o">.</span><span class="n">delete</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">&#39;owners_list&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">redirect</span><span class="p">(</span><span class="s1">'owners_list'</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">render</span><span class="p">(</span>
         <span class="n">request</span><span class="p">,</span>
-        <span class="s1">&#39;owners/owner_confirm_delete.html&#39;</span><span class="p">,</span>
-        <span class="p">{</span><span class="s1">&#39;owner&#39;</span><span class="p">:</span> <span class="n">owner</span><span class="p">}</span>
+        <span class="s1">'owners/owner_confirm_delete.html'</span><span class="p">,</span>
+        <span class="p">{</span><span class="s1">'owner'</span><span class="p">:</span> <span class="n">owner</span><span class="p">}</span>
     <span class="p">)</span>
 </code></pre></div>
 <p>При открытии страницы удаления отображается шаблон <code>owner_confirm_delete.html</code>, в котором пользователь может подтвердить
@@ -834,24 +863,24 @@ forms.CharField(...) не нужно.</p>
 <h3 id="_2">Реализация представлений для автомобилей</h3>
 <p>Для работы с автомобилями в приложении используются классы Django CBV (Class-Based Views).</p>
 <p>Получение списка автомобилей реализовано с помощью <code>ListView</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">CarListView</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CarListView</span><span class="p">(</span><span class="n">ListView</span><span class="p">):</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">Car</span>
-    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;cars/cars_list.html&#39;</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">'cars/cars_list.html'</span>
 </code></pre></div>
 <p>В качестве модели указывается <code>Car</code>, а результат работы представления отображается в шаблоне <code>cars/cars_list.html</code>.</p>
 <p>Для просмотра информации об отдельном автомобиле используется <code>DetailView</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">CarDetailView</span><span class="p">(</span><span class="n">DetailView</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CarDetailView</span><span class="p">(</span><span class="n">DetailView</span><span class="p">):</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">Car</span>
-    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;cars/car_detail.html&#39;</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">'cars/car_detail.html'</span>
 </code></pre></div>
 <p>Представление получает объект <code>Car</code> по идентификатору и передаёт его в шаблон <code>cars/car_detail.html</code>.</p>
 <h3 id="_3">Создание автомобиля</h3>
 <p>Создание автомобиля реализовано с помощью <code>CreateView</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">CarCreate</span><span class="p">(</span><span class="n">CreateView</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CarCreate</span><span class="p">(</span><span class="n">CreateView</span><span class="p">):</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">Car</span>
-    <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;license_plate&#39;</span><span class="p">,</span> <span class="s1">&#39;brand&#39;</span><span class="p">,</span> <span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">]</span>
-    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;cars/create_car.html&#39;</span>
-    <span class="n">success_url</span> <span class="o">=</span> <span class="s1">&#39;/cars&#39;</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'license_plate'</span><span class="p">,</span> <span class="s1">'brand'</span><span class="p">,</span> <span class="s1">'model'</span><span class="p">,</span> <span class="s1">'color'</span><span class="p">]</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">'cars/create_car.html'</span>
+    <span class="n">success_url</span> <span class="o">=</span> <span class="s1">'/cars'</span>
 </code></pre></div>
 <p>В представлении указывается модель <code>Car</code>, а также поля, которые должны быть доступны для заполнения:</p>
 <ul>
@@ -864,11 +893,11 @@ forms.CharField(...) не нужно.</p>
 страницу списка автомобилей.</p>
 <h3 id="_4">Обновление автомобиля</h3>
 <p>Изменение данных автомобиля реализовано с помощью <code>UpdateView</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">CarUpdateView</span><span class="p">(</span><span class="n">UpdateView</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CarUpdateView</span><span class="p">(</span><span class="n">UpdateView</span><span class="p">):</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">Car</span>
-    <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;license_plate&#39;</span><span class="p">,</span> <span class="s1">&#39;brand&#39;</span><span class="p">,</span> <span class="s1">&#39;model&#39;</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">]</span>
-    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;cars/update_car.html&#39;</span>
-    <span class="n">success_url</span> <span class="o">=</span> <span class="s1">&#39;/cars&#39;</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'license_plate'</span><span class="p">,</span> <span class="s1">'brand'</span><span class="p">,</span> <span class="s1">'model'</span><span class="p">,</span> <span class="s1">'color'</span><span class="p">]</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">'cars/update_car.html'</span>
+    <span class="n">success_url</span> <span class="o">=</span> <span class="s1">'/cars'</span>
 </code></pre></div>
 <p><code>UpdateView</code> автоматически получает существующий объект <code>Car</code>, отображает его данные в форме и после отправки формы
 сохраняет изменения.</p>
@@ -876,10 +905,10 @@ forms.CharField(...) не нужно.</p>
 списку автомобилей.</p>
 <h3 id="_5">Удаление автомобиля</h3>
 <p>Для удаления автомобиля используется <code>DeleteView</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">CarDelete</span><span class="p">(</span><span class="n">DeleteView</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">CarDelete</span><span class="p">(</span><span class="n">DeleteView</span><span class="p">):</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">Car</span>
-    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;cars/car_confirm_delete.html&#39;</span>
-    <span class="n">success_url</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span><span class="s1">&#39;cars_list&#39;</span><span class="p">)</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">'cars/car_confirm_delete.html'</span>
+    <span class="n">success_url</span> <span class="o">=</span> <span class="n">reverse_lazy</span><span class="p">(</span><span class="s1">'cars_list'</span><span class="p">)</span>
 </code></pre></div>
 <p>Перед удалением отображается страница подтверждения с использованием шаблона <code>cars/car_confirm_delete.html</code>. После
 подтверждения объект удаляется, а пользователь перенаправляется на список автомобилей.</p>
@@ -889,55 +918,55 @@ forms.CharField(...) не нужно.</p>
 <p>Для реализованных представлений в файле <code>urls.py</code> настроены следующие маршруты:</p>
 <div class="highlight"><pre><span></span><code><span class="n">urlpatterns</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">path</span><span class="p">(</span>
-        <span class="s1">&#39;owners/owner/&lt;int:owner_id&gt;/&#39;</span><span class="p">,</span>
+        <span class="s1">'owners/owner/&lt;int:owner_id&gt;/'</span><span class="p">,</span>
         <span class="n">views</span><span class="o">.</span><span class="n">owner_detail</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;owner_detail&#39;</span>
+        <span class="n">name</span><span class="o">=</span><span class="s1">'owner_detail'</span>
     <span class="p">),</span>
     <span class="n">path</span><span class="p">(</span>
-        <span class="s1">&#39;owners/&#39;</span><span class="p">,</span>
+        <span class="s1">'owners/'</span><span class="p">,</span>
         <span class="n">views</span><span class="o">.</span><span class="n">owners_list</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;owners_list&#39;</span>
+        <span class="n">name</span><span class="o">=</span><span class="s1">'owners_list'</span>
     <span class="p">),</span>
     <span class="n">path</span><span class="p">(</span>
-        <span class="s1">&#39;owners/create_owner/&#39;</span><span class="p">,</span>
+        <span class="s1">'owners/create_owner/'</span><span class="p">,</span>
         <span class="n">views</span><span class="o">.</span><span class="n">create_owner</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;owner_create&#39;</span>
+        <span class="n">name</span><span class="o">=</span><span class="s1">'owner_create'</span>
     <span class="p">),</span>
     <span class="n">path</span><span class="p">(</span>
-        <span class="s1">&#39;owners/&lt;int:pk&gt;/update/&#39;</span><span class="p">,</span>
+        <span class="s1">'owners/&lt;int:pk&gt;/update/'</span><span class="p">,</span>
         <span class="n">views</span><span class="o">.</span><span class="n">owner_update</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;owner_update&#39;</span>
+        <span class="n">name</span><span class="o">=</span><span class="s1">'owner_update'</span>
     <span class="p">),</span>
     <span class="n">path</span><span class="p">(</span>
-        <span class="s1">&#39;owners/&lt;int:pk&gt;/delete/&#39;</span><span class="p">,</span>
+        <span class="s1">'owners/&lt;int:pk&gt;/delete/'</span><span class="p">,</span>
         <span class="n">views</span><span class="o">.</span><span class="n">owner_delete</span><span class="p">,</span>
-        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;owner_delete&#39;</span>
+        <span class="n">name</span><span class="o">=</span><span class="s1">'owner_delete'</span>
     <span class="p">),</span>
 
     <span class="n">path</span><span class="p">(</span>
-        <span class="s1">&#39;cars/&#39;</span><span class="p">,</span>
+        <span class="s1">'cars/'</span><span class="p">,</span>
         <span class="n">views</span><span class="o">.</span><span class="n">CarListView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span>
-        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;cars_list&#39;</span>
+        <span class="n">name</span><span class="o">=</span><span class="s1">'cars_list'</span>
     <span class="p">),</span>
     <span class="n">path</span><span class="p">(</span>
-        <span class="s1">&#39;cars/car/&lt;int:pk&gt;&#39;</span><span class="p">,</span>
+        <span class="s1">'cars/car/&lt;int:pk&gt;'</span><span class="p">,</span>
         <span class="n">views</span><span class="o">.</span><span class="n">CarDetailView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span>
-        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;car_detail&#39;</span>
+        <span class="n">name</span><span class="o">=</span><span class="s1">'car_detail'</span>
     <span class="p">),</span>
     <span class="n">path</span><span class="p">(</span>
-        <span class="s1">&#39;cars/&lt;int:pk&gt;/update/&#39;</span><span class="p">,</span>
+        <span class="s1">'cars/&lt;int:pk&gt;/update/'</span><span class="p">,</span>
         <span class="n">CarUpdateView</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span>
-        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;car_update&#39;</span>
+        <span class="n">name</span><span class="o">=</span><span class="s1">'car_update'</span>
     <span class="p">),</span>
     <span class="n">path</span><span class="p">(</span>
-        <span class="s1">&#39;cars/create/&#39;</span><span class="p">,</span>
+        <span class="s1">'cars/create/'</span><span class="p">,</span>
         <span class="n">CarCreate</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span>
-        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;car_create&#39;</span>
+        <span class="n">name</span><span class="o">=</span><span class="s1">'car_create'</span>
     <span class="p">),</span>
     <span class="n">path</span><span class="p">(</span>
-        <span class="s1">&#39;cars/&lt;int:pk&gt;/delete/&#39;</span><span class="p">,</span>
+        <span class="s1">'cars/&lt;int:pk&gt;/delete/'</span><span class="p">,</span>
         <span class="n">CarDelete</span><span class="o">.</span><span class="n">as_view</span><span class="p">(),</span>
-        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;car_delete&#39;</span>
+        <span class="n">name</span><span class="o">=</span><span class="s1">'car_delete'</span>
     <span class="p">),</span>
 <span class="p">]</span>
 </code></pre></div>
@@ -968,14 +997,14 @@ Django.</p>
 остальных страниц приложения.</p>
 <h3 id="_8">Формы</h3>
 <p>Для работы с данными владельца создан файл <code>forms.py</code>. В нём используется <code>ModelForm</code>:</p>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
-<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">CarOwner</span>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">django</span><span class="w"> </span><span class="kn">import</span> <span class="n">forms</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">CarOwner</span>
 
 
-<span class="k">class</span> <span class="nc">CarOwnerForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
-    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CarOwnerForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">CarOwner</span>
-        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;surname&#39;</span><span class="p">,</span> <span class="s1">&#39;birthday&#39;</span><span class="p">]</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'name'</span><span class="p">,</span> <span class="s1">'surname'</span><span class="p">,</span> <span class="s1">'birthday'</span><span class="p">]</span>
 </code></pre></div>
 <p><code>CarOwnerForm</code> связан с моделью <code>CarOwner</code>. В форме доступны три поля модели: имя, фамилия и дата рождения.</p>
 <p>Использование <code>ModelForm</code> позволяет автоматически создать форму на основе полей модели и сохранить корректно заполненные
@@ -984,12 +1013,12 @@ Django.</p>
 <p>В модели <code>Car</code> реализована связь многие-ко-многим с моделью <code>CarOwner</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="n">owners</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ManyToManyField</span><span class="p">(</span>
     <span class="n">CarOwner</span><span class="p">,</span>
-    <span class="n">through</span><span class="o">=</span><span class="s1">&#39;Ownership&#39;</span>
+    <span class="n">through</span><span class="o">=</span><span class="s1">'Ownership'</span>
 <span class="p">)</span>
 </code></pre></div>
 <p>В качестве промежуточной модели используется <code>Ownership</code>.</p>
 <p>Модель <code>Ownership</code> содержит внешние ключи на владельца и автомобиль, а также дополнительные данные о периоде владения:</p>
-<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Ownership</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Ownership</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">owner</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span>
         <span class="n">CarOwner</span><span class="p">,</span>
         <span class="n">null</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -1011,12 +1040,12 @@ Django.</p>
 <p>Таким образом, промежуточная модель позволяет хранить не только сам факт связи автомобиля с владельцем, но и даты начала
 и окончания владения.</p>
 <p>В модели <code>CarOwner</code> также определён метод <code>__str__</code>, возвращающий фамилию и имя владельца:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">surname</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">surname</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span>
 </code></pre></div>
 <p>А для модели <code>Car</code> определено строковое представление:</p>
-<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Автомобиль </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">brand</span><span class="si">}</span><span class="s2"> с номером </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">license_plate</span><span class="si">}</span><span class="s2">&quot;</span>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">"Автомобиль </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">brand</span><span class="si">}</span><span class="s2"> с номером </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">license_plate</span><span class="si">}</span><span class="s2">"</span>
 </code></pre></div>
 <p>Это позволяет получать более понятное представление объектов, например при их отображении в административной панели
 Django.</p>
@@ -1040,12 +1069,12 @@ Django.</p>
 
     # для логов
     def __str__(self):
-        return f&quot;{self.last_name} {self.first_name}&quot;
+        return f"{self.last_name} {self.first_name}"
  ```
 
 2. Подключим модель в settings.py
 
-`AUTH_USER_MODEL = &#39;project_first_app.CarOwner&#39;`
+`AUTH_USER_MODEL = 'project_first_app.CarOwner'`
 
 Без этой строки Django продолжит использовать стандартную модель, а так мы скажем использовать именно нашу модель
 
@@ -1059,7 +1088,7 @@ AUTH_USER_MODEL нужно задать до первой миграции. Из
 Создадим новые миграции
 
 python manage.py makemigrations                                           
-Migrations for &#39;project_first_app&#39;:                        
+Migrations for 'project_first_app':                        
 project_first_app\migrations\0001_initial.py
 + Create model Car
 + Create model CarOwner
@@ -1338,9 +1367,9 @@ from django.urls import include, path</p>
 ]
 <div class="highlight"><pre><span></span><code>include - функция, которая позволяет подключать списки маршрутов из других файлов.
 
-path(&#39;&#39;, include(&#39;flight_board_app.urls&#39;)), - Все обычные URL передавай приложению flight_board_app
+path('', include('flight_board_app.urls')), - Все обычные URL передавай приложению flight_board_app
 
-path(&#39;admin/&#39;, admin.site.urls) - /admin/ обслуживает встроенная Django Admin
+path('admin/', admin.site.urls) - /admin/ обслуживает встроенная Django Admin
 
 url прложения
 
@@ -1363,9 +1392,9 @@ urlpatterns = [
 <div class="highlight"><pre><span></span><code>Этот список маршрутов находится внутри вашего приложения flight_board_app. Он связывает конкретные адреса (URL) на сайте с функциями-обработчиками в файле views.py.
 
 
-Зачем нужен name, например name=&#39;flight_detail&#39;?
+Зачем нужен name, например name='flight_detail'?
 
-Чтобы в шаблонах(html) полный путь не прописывать, /flights/5/, достаточно написать {% url &#39;flight_detail&#39; flight.id %}.
+Чтобы в шаблонах(html) полный путь не прописывать, /flights/5/, достаточно написать {% url 'flight_detail' flight.id %}.
 
 
 ## views.py
@@ -1600,20 +1629,20 @@ return redirect('my_reservations')
     return redirect('home')</code></p>
 <h3 id="login_view">login_view</h3>
 <div class="highlight"><pre><span></span><code>def login_view(request):
-    if request.method != &#39;POST&#39;:
-        return render(request, &#39;flights/login.html&#39;)
+    if request.method != 'POST':
+        return render(request, 'flights/login.html')
 
-    username = request.POST.get(&#39;username&#39;, &#39;&#39;).strip()
-    password = request.POST.get(&#39;password&#39;, &#39;&#39;)
+    username = request.POST.get('username', '').strip()
+    password = request.POST.get('password', '')
 
     user = authenticate(request, username=username, password=password)
 
     if user is None:
-        messages.error(request, &#39;Неверный логин или пароль.&#39;)
-        return render(request, &#39;flights/login.html&#39;)
+        messages.error(request, 'Неверный логин или пароль.')
+        return render(request, 'flights/login.html')
 
     login(request, user)
-    return redirect(&#39;home&#39;)
+    return redirect('home')
 </code></pre></div>
 <p>эти и остальные функции можно увидеть в файле views.py</p>
 <h2 id="adminpy">admin.py</h2>
@@ -1676,10 +1705,10 @@ admin.site.register(Review)
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
       
     
   </body>

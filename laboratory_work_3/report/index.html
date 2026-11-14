@@ -1,0 +1,1783 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../laboratory_work_2/report/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.1">
+    
+    
+      
+        <title>Лабораторная работа №3 - Лабораторные работы — Степанова Екатерина</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.57a0d79d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#3-django-web-framework" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Лабораторные работы — Степанова Екатерина" class="md-header__button md-logo" aria-label="Лабораторные работы — Степанова Екатерина" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Лабораторные работы — Степанова Екатерина
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Лабораторная работа №3
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Лабораторные работы — Степанова Екатерина" class="md-nav__button md-logo" aria-label="Лабораторные работы — Степанова Екатерина" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Лабораторные работы — Степанова Екатерина
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laboratory_work_1/report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лабораторная работа №1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../laboratory_work_2/report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лабораторная работа №2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лабораторная работа №3
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Лабораторная работа №3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#no31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Практическое занятие №3.1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Практическое занятие №3.1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задача 1. Создание объектов
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Задача 1. Создание объектов">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Практическое задание 1. Создание объектов
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задача 2. Создание простых запросов на фильтрацию
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задача 3. Агрегация и аннотация запросов
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#no32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Практическое занятие №3.2
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Практическое занятие №3.2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apiview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Представления на основе APIView.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Представления на основе APIView.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Практика
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Используя Postman
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Используя Postman">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user-create" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Давайте создадим нового пользователя, используя User Create
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apushkin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Добавим авторизацию с помощью нового пользователя A.Pushkin
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#no31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Практическое занятие №3.1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Практическое занятие №3.1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задача 1. Создание объектов
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Задача 1. Создание объектов">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Практическое задание 1. Создание объектов
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задача 2. Создание простых запросов на фильтрацию
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задача 3. Агрегация и аннотация запросов
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#no32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Практическое занятие №3.2
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Практическое занятие №3.2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apiview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Представления на основе APIView.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Представления на основе APIView.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Практика
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postman" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Используя Postman
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Используя Postman">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#user-create" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Давайте создадим нового пользователя, используя User Create
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#apushkin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Добавим авторизацию с помощью нового пользователя A.Pushkin
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="3-django-web-framework">Лабораторная работа 3. Django Web framework. Запросы и их выполнение¶</h1>
+<p>Я создала папку для лабораторной работы 3, туда я скопирую проект практики лабораторной работы 2.</p>
+<p>Активируем виртуальное окружение.</p>
+<p><code>.\tutorial-env\Scripts\activate</code></p>
+<p>Еще мне выдалось предупреждение при запуске приложения:</p>
+<p>Django сообщает, что использует старый (ограниченный) тип ID для записей в таблицах, так как начиная с версии django 3.2 он требует явно указать современный тип id.</p>
+<p>В конец файла settings.py добавляем 
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'</p>
+<p>Это включит новый тип ID с огромным запасом емкости и скроет предупреждения.</p>
+<h2 id="no31">Практическое занятие №3.1</h2>
+<h3 id="1">Задача 1. Создание объектов</h3>
+<p>В дальнейшем все задания в этой работе будут реализовываться через интерактивный интерпретатор, запущенный посредством управляющего файла manage.py.
+Если же вы пользуетесь командной строкой для взаимодействия с проектом, то в папке вашей разработки для открытия интерпретатора, поддерживающего Django, нужно написать manage.py shell (для Windows) или python3 manage.py shell (для Linux)</p>
+<div class="highlight"><pre><span></span><code>python manage.py shell
+12 objects imported automatically (use -v 2 for details).
+
+Python 3.12.6 (tags/v3.12.6:a4a2d2b, Sep  6 2024, 20:11:23) [MSC v.1940 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+&gt;&gt;&gt;
+</code></pre></div>
+<h4 id="1_1">Практическое задание 1. Создание объектов</h4>
+<p>Необходимо импортировать классы моделей из файла models.py:</p>
+<div class="highlight"><pre><span></span><code>from project_first_app.models import User, Ownership, DrivingLicence, Car
+</code></pre></div>
+<p><div class="highlight"><pre><span></span><code>&gt;&gt;&gt; from project_first_app.models import User, Ownership, DrivingLicence, Car
+</code></pre></div>
+1) Напишем запрос на создание 6-7 новых автовладельцев</p>
+<p>Реализуем создание через менеджер <code>objects</code>. </p>
+<div class="highlight"><pre><span></span><code>user1 = User.objects.create_user(username="ivan_ivanov", password="password123", first_name="Иван", last_name="Иванов", passport="11112222", home_address="ул. Ленина, д. 5", nationality="Русский", birthday="1990-05-12", sex="M")
+
+user2 = User.objects.create_user(username="petr_petrov", password="password123", first_name="Петр", last_name="Петров", passport="33334444", home_address="пр. Просвещения, д. 12", nationality="Русский", birthday="1985-11-23", sex="M")
+
+user3 = User.objects.create_user(username="anna_sidorova", password="password123", first_name="Анна", last_name="Сидорова", passport="55556666", home_address="ул. Пушкина, д. 8", nationality="Русская", birthday="1995-02-08", sex="F")
+
+user4 = User.objects.create_user(username="dmitry_kuznetsov", password="password123", first_name="Дмитрий", last_name="Кузнецов", passport="77778888", home_address="ул. Чехова, д. 45", nationality="Русский", birthday="1988-08-30", sex="M")
+
+user5 = User.objects.create_user(username="elena_popova", password="password123", first_name="Елена", last_name="Попова", passport="99990000", home_address="ул. Гагарина, д. 3", nationality="Русская", birthday="1992-04-15", sex="F")
+
+user6 = User.objects.create_user(username="sergey_smirnov", password="password123", first_name="Сергей", last_name="Смирнов", passport="12345678", home_address="Невский пр., д. 100", nationality="Русский", birthday="1983-09-01", sex="M")
+
+user7 = User.objects.create_user(username="olga_fedorova", password="password123", first_name="Ольга", last_name="Федорова", passport="87654321", home_address="ул. Садовая, д. 21", nationality="Русская", birthday="1997-12-19", sex="F")
+</code></pre></div>
+<p>Посмотрим теперь через DB Browser, что все создалось успешно.</p>
+<p><img alt="" src="../images/DBB_user.png" /></p>
+<p>Или запустим наше приложение и посмотрим список через него</p>
+<p><img alt="" src="../images/list_users_app.png" /></p>
+<p>2) Напишем запрос на создание 5-6 автомобилей   </p>
+<div class="highlight"><pre><span></span><code>car1 = Car.objects.create(license_plate="А123АА77", brand="Toyota", model="Camry", color="Черный")
+car2 = Car.objects.create(license_plate="В456ВВ99", brand="BMW", model="X5", color="Белый")
+car3 = Car.objects.create(license_plate="Е789ЕЕ178", brand="Lada", model="Vesta", color="Серый")
+car4 = Car.objects.create(license_plate="К012КК799", brand="Hyundai", model="Solaris", color="Синий")
+car5 = Car.objects.create(license_plate="М345ММ777", brand="Mercedes", model="E-Class", color="Золотой")
+car6 = Car.objects.create(license_plate="О678ОО98", brand="Kia", model="Rio", color="Красный")
+</code></pre></div>
+<p>Посмотрим теперь через DB Browser, что все создалось успешно.</p>
+<p><img alt="" src="../images/DBB_car.png" /></p>
+<p>Или запустим наше приложение и посмотрим список через него</p>
+<p><img alt="" src="../images/list_cars_app.png" /></p>
+<p>3) Каждому автовладельцу назначьте удостоверение и от 1 до 3 автомобилей. Задание можете выполнить либо в интерактивном режиме интерпретатора, либо в отдельном python-файле. Результатом должны стать запросы и отображение созданных объектов.</p>
+<p>Если вы добавляете автомобили владельцу через метод .add(), не забудьте заполнить также ассоциативную сущность «владение».</p>
+<p>Для удобства я создам файл.</p>
+<p>Создаем файл run_fill.py в корневом каталоге нашего проекта.</p>
+<p>Затем запускаем его в терминале.
+<code>python run_fill.py</code></p>
+<p><img alt="" src="../images/DBB_driving_license.png" /></p>
+<p><img alt="" src="../images/DBB_ownership.png" /></p>
+<p>Т.е. в run_fill.py, были также выполнены запросы через objects.
+<div class="highlight"><pre><span></span><code> Ownership.objects.get_or_create(owner=user, car=car, defaults={"date_start": date(2023, 5, 1)})
+
+DrivingLicence.objects.get_or_create(owner=user, defaults={"license_number": f"9900{i}{random.randint(10, 99)}", "type": "B", "date": date(2020, 1, 1)})
+</code></pre></div></p>
+<h3 id="2">Задача 2. Создание простых запросов на фильтрацию</h3>
+<p>1) Добавим, где необходимо related_name к полям модели</p>
+<p>Вот, например, для DrivingLicence</p>
+<div class="highlight"><pre><span></span><code>class DrivingLicence(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='license')
+    license_number = models.CharField(max_length=10)
+    type = models.CharField(max_length=10)
+    date = models.DateField()
+
+    def __str__(self):
+        return f"Права {self.license_number} ({self.owner.last_name})"
+</code></pre></div>
+<p>2) Выведем все марки "Toyota"</p>
+<div class="highlight"><pre><span></span><code>Car.objects.filter(brand="Toyota") 
+&lt;QuerySet [&lt;Car: Автомобиль Toyota с номером А123АА77&gt;]&gt;
+</code></pre></div>
+<p>3) Найдите всех водителей с именем «Елена» (или любым другим именем на ваше усмотрение).</p>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; User.objects.filter(first_name="Елена")
+&lt;QuerySet [&lt;User: Попова Елена&gt;]&gt;
+</code></pre></div>
+<p>4) Взяв любого случайного владельца, получите его id, и по этому id получите экземпляр удостоверения в виде объекта модели (можно в 2 запроса).</p>
+<p>4.1) Возьму случайного владельца</p>
+<p>Воспользуюсь функцией get(), чтобы получить сразу же конкретную запись</p>
+<p><div class="highlight"><pre><span></span><code>&gt;&gt;&gt; user = User.objects.get(first_name='Иван')
+&gt;&gt;&gt; user
+&lt;User: Иванов Иван&gt;
+</code></pre></div>
+4.2) Получу его id</p>
+<p><div class="highlight"><pre><span></span><code>&gt;&gt;&gt; user_id = user.id
+&gt;&gt;&gt; user_id
+2
+</code></pre></div>
+4.3) По id получу его удостоверение</p>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; DrivingLicence.objects.get(owner_id=user_id)  
+&lt;DrivingLicence: Права 9900183 (Иванов)&gt;
+</code></pre></div>
+<p>5) Выведите всех владельцев красных машин (или любого другого цвета, который у вас присутствует).</p>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; User.objects.filter(ownerships__car__color="Красный")
+&lt;QuerySet [&lt;User: Иванов Иван&gt;, &lt;User: Петров Петр&gt;, &lt;User: Кузнецов Дмитрий&gt;, &lt;User: Попова Елена&gt;, &lt;User: Федорова Ольга&gt;]&gt;
+&gt;&gt;&gt; User.objects.filter(cars__color="Красный")
+&lt;QuerySet [&lt;User: Иванов Иван&gt;, &lt;User: Петров Петр&gt;, &lt;User: Кузнецов Дмитрий&gt;, &lt;User: Попова Елена&gt;, &lt;User: Федорова Ольга&gt;]&gt;
+&gt;&gt;&gt;
+</code></pre></div>
+<p>6) Найдите всех владельцев, чей год владения машиной начинается с 2010 (или любой другой год, который присутствует у вас в базе).</p>
+<p>Related_name теория: https://django.fun/qa/30927/</p>
+<p>Посмотрю в начале, какие года есть</p>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; Ownership.objects.values_list('date_start__year', flat=True) 
+&lt;QuerySet [2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023, 2023]&gt;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>User.objects.filter(ownerships__date_start__year=2023).distinct()
+&lt;QuerySet [&lt;User: Степанова Екатерина&gt;, &lt;User: Иванов Иван&gt;, &lt;User: Петров Петр&gt;, &lt;U
+ser: Сидорова Анна&gt;, &lt;User: Кузнецов Дмитрий&gt;, &lt;User: Попова Елена&gt;, &lt;User: Смирнов Сергей&gt;, &lt;User: Федорова Ольга&gt;]&gt;
+</code></pre></div>
+<h3 id="3">Задача 3. Агрегация и аннотация запросов</h3>
+<p>Чтобы использовать функции аннотации и агрегации, нужно их импортировать</p>
+<div class="highlight"><pre><span></span><code> from django.db.models import Max, Min, Avg, Count
+</code></pre></div>
+<p>1)  Вывод даты выдачи самого старшего водительского удостоверения.</p>
+<div class="highlight"><pre><span></span><code>DrivingLicence.objects.aggregate(Max("date"))       
+{'date__max': datetime.date(2020, 1, 8)}
+</code></pre></div>
+<p>Т.е. дата самого старшего удостоверения приходится на 8 января 2020 года.</p>
+<p>Ради интереса посмотрю вообще какие даты есть.</p>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; DrivingLicence.objects.values_list('date', flat=True)       
+&lt;QuerySet [datetime.date(2020, 1, 1), datetime.date(2020, 1, 2), datetime.date(2020,
+ 1, 3), datetime.date(2020, 1, 4), datetime.date(2020, 1, 5), datetime.date(2020, 1, 6), datetime.date(2020, 1, 7), datetime.date(2020, 1, 8)]&gt;
+</code></pre></div>
+<p>2) Укажите самую позднюю дату владения машиной, имеющей какую-то из существующих моделей в вашей базе.</p>
+<p>Сначала посмотрю даты владения. Я так поняла по заданию интересуются именно датой начала владения.</p>
+<p>! flat = True распаковывает результат и возвращает плоский список из чистых значений, вместо кортежа</p>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; Ownership.objects.values_list('date_start', flat=True) 
+&lt;QuerySet [datetime.date(2023, 5, 1), datetime.date(2023, 5, 1), datetime.date(2023,
+ 5, 1), datetime.date(2023, 5, 1), datetime.date(2023, 5, 1), datetime.date(2023, 5,
+ 1), datetime.date(2023, 5, 1), datetime.date(2023, 5, 1), datetime.date(2023, 5, 1)
+, datetime.date(2023, 5, 1), datetime.date(2023, 5, 1), datetime.date(2023, 5, 1), d
+atetime.date(2023, 5, 1), datetime.date(2023, 5, 1), datetime.date(2023, 5, 1), date
+time.date(2023, 5, 1), datetime.date(2023, 5, 1), datetime.date(2023, 5, 1), datetime.date(2023, 5, 1), datetime.date(2023, 5, 1)]&gt;
+</code></pre></div>
+<p>а вот вывод если flat = False</p>
+<p><div class="highlight"><pre><span></span><code>&gt;&gt;&gt; Ownership.objects.values_list('date_start', flat=False) 
+&lt;QuerySet [(datetime.date(2023, 5, 1),), (datetime.date(2023, 5, 1),), (datetime.dat
+e(2023, 5, 1),), (datetime.date(2023, 5, 1),), (datetime.date(2023, 5, 1),), (dateti
+me.date(2023, 5, 1),), (datetime.date(2023, 5, 1),), (datetime.date(2023, 5, 1),), (
+datetime.date(2023, 5, 1),), (datetime.date(2023, 5, 1),), (datetime.date(2023, 5, 1
+),), (datetime.date(2023, 5, 1),), (datetime.date(2023, 5, 1),), (datetime.date(2023
+, 5, 1),), (datetime.date(2023, 5, 1),), (datetime.date(2023, 5, 1),), (datetime.dat
+e(2023, 5, 1),), (datetime.date(2023, 5, 1),), (datetime.date(2023, 5, 1),), (datetime.date(2023, 5, 1),)]&gt;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; Ownership.objects.aggregate(Max('date_start')            
+... )
+{'date_start__max': datetime.date(2023, 5, 1)}
+</code></pre></div>
+Я решила изменить некоторые данные во владении, чтобы проверить функции, так как дата в queryset одинаковая</p>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; Ownership.objects.values_list('date_start', flat=False) 
+&lt;QuerySet [(datetime.date(1999, 6, 15),), (datetime.date(2025, 3, 20),), (datetime.d
+ate(2026, 11, 1),), (datetime.date(2023, 5, 1),), (datetime.date(2023, 5, 1),), (dat
+etime.date(2023, 5, 1),), (datetime.date(2023, 5, 1),), (datetime.date(2023, 5, 1),)
+, (datetime.date(2023, 5, 1),), (datetime.date(2023, 5, 1),), (datetime.date(2023, 5
+, 1),), (datetime.date(2023, 5, 1),), (datetime.date(2023, 5, 1),), (datetime.date(2
+023, 5, 1),), (datetime.date(2023, 5, 1),), (datetime.date(2023, 5, 1),), (datetime.
+date(2023, 5, 1),), (datetime.date(2023, 5, 1),), (datetime.date(2023, 5, 1),), (datetime.date(2023, 5, 1),)]&gt;
+</code></pre></div>
+<p>3) Выведите количество машин для каждого водителя.</p>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; User.objects.values('id', 'username').annotate(Count("cars")) 
+&lt;QuerySet [{'id': 1, 'username': '', 'cars__count': 3}, {'id': 4, 'username': 'anna_
+sidorova', 'cars__count': 2}, {'id': 5, 'username': 'dmitry_kuznetsov', 'cars__count
+': 3}, {'id': 6, 'username': 'elena_popova', 'cars__count': 3}, {'id': 2, 'username'
+: 'ivan_ivanov', 'cars__count': 3}, {'id': 8, 'username': 'olga_fedorova', 'cars__co
+unt': 2}, {'id': 3, 'username': 'petr_petrov', 'cars__count': 3}, {'id': 7, 'username': 'sergey_smirnov', 'cars__count': 1}]&gt;
+</code></pre></div>
+<p>4) Подсчитайте количество машин для каждой марки
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; Car.objects.values('brand').annotate(Count('id'))
+&lt;QuerySet [{'brand': 'BMW', 'id__count': 1}, {'brand': 'Hyundai', 'id__count': 1}, {
+'brand': 'Kia', 'id__count': 1}, {'brand': 'Lada', 'id__count': 1}, {'brand': 'Mercedes', 'id__count': 1}, {'brand': 'Toyota', 'id__count': 1}]&gt;
+&gt;&gt;&gt;
+</code></pre></div></p>
+<p>Добавим еще одну машину марки Toyota и повторно проверим.
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; Car.objects.values_list('brand').annotate(Count('id')) 
+&lt;QuerySet [('BMW', 1), ('Hyundai', 1), ('Kia', 1), ('Lada', 1), ('Mercedes', 1), ('Toyota', 2)]&gt;
+</code></pre></div></p>
+<p>5) Отсортируйте всех автовладельцев по дате выдачи удостоверения. (Примечание: чтобы не выводить несколько раз одни и те же записи, воспользуйтесь методом .distinct().</p>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; User.objects.order_by('license__date')         
+&lt;QuerySet [&lt;User: Степанова Екатерина&gt;, &lt;User: Иванов Иван&gt;, &lt;User: Петров Петр&gt;, &lt;U
+ser: Сидорова Анна&gt;, &lt;User: Кузнецов Дмитрий&gt;, &lt;User: Попова Елена&gt;, &lt;User: Смирнов Сергей&gt;, &lt;User: Федорова Ольга&gt;]&gt;
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; User.objects.order_by('license__date').distinct()
+&lt;QuerySet [&lt;User: Степанова Екатерина&gt;, &lt;User: Иванов Иван&gt;, &lt;User: Петров Петр&gt;, &lt;U
+ser: Сидорова Анна&gt;, &lt;User: Кузнецов Дмитрий&gt;, &lt;User: Попова Елена&gt;, &lt;User: Смирнов Сергей&gt;, &lt;User: Федорова Ольга&gt;]&gt;
+</code></pre></div>
+<p>Чтобы дополнительно вывести даты воспользуемся .values(), он будет работать как join
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; User.objects.order_by('license__date').distinct().values('last_name', 'first_name', 'license__date') 
+&lt;QuerySet [{'last_name': 'Степанова', 'first_name': 'Екатерина', 'license__date': da
+tetime.date(2020, 1, 1)}, {'last_name': 'Иванов', 'first_name': 'Иван', 'license__da
+te': datetime.date(2020, 1, 2)}, {'last_name': 'Петров', 'first_name': 'Петр', 'lice
+nse__date': datetime.date(2020, 1, 3)}, {'last_name': 'Сидорова', 'first_name': 'Анн
+а', 'license__date': datetime.date(2020, 1, 4)}, {'last_name': 'Кузнецов', 'first_na
+me': 'Дмитрий', 'license__date': datetime.date(2020, 1, 5)}, {'last_name': 'Попова',
+ 'first_name': 'Елена', 'license__date': datetime.date(2020, 1, 6)}, {'last_name': '
+Смирнов', 'first_name': 'Сергей', 'license__date': datetime.date(2020, 1, 7)}, {'las
+t_name': 'Федорова', 'first_name': 'Ольга', 'license__date': datetime.date(2020, 1, 8)}]&gt;
+</code></pre></div></p>
+<h2 id="no32">Практическое занятие №3.2</h2>
+<p>Утановим Django REST Framework (DRF) для создания API.</p>
+<p><code>pip install djangorestframework</code></p>
+<p>Теперь всё готово для того, чтобы создать ваш первый DRF API.</p>
+<p>Для этого нам нужно создать проект Django для работы. Для этого мы запустим следующую команду:</p>
+<div class="highlight"><pre><span></span><code>django-admin startproject warriors_project
+</code></pre></div>
+<p>Создам теперь приложение</p>
+<p><code>python manage.py startapp warriors_app</code></p>
+<p>Добавим приложение в settings.py INSTALLED_APPS</p>
+<div class="highlight"><pre><span></span><code>INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    'warriors_app'
+]
+</code></pre></div>
+<p>Прописываем модели в models и проводим миграции.</p>
+<p><code>python -m pip install djangorestframework</code></p>
+<p>Попробуем запустить сервер.</p>
+<p><img alt="" src="../images/runserver.png" /></p>
+<p>Все успешно!</p>
+<h3 id="apiview">Представления на основе APIView.</h3>
+<p>В первую очередь необходимо реализовать метод для просмотра всех воинов. Для этого в файле warriors_app/views.py необходимо реализовать следующий код:</p>
+<div class="highlight"><pre><span></span><code>class WarriorAPIView(APIView):
+    def get(self, request):
+        warriors = Warrior.objects.all()
+        serializer = WarriorSerializer(warriors, many=True)
+        return Response({"Warriors": serializer.data})
+</code></pre></div>
+<p>Далее необходимо настроить сериализацию данных из Django к формату JSON. Для этого необходимо создать файл serializers.py и настроить в нём работу сериализаторов. Используемые в файле контроллеров сериализаторы необходимо импортировать в файл views.py.</p>
+<div class="highlight"><pre><span></span><code>from rest_framework import serializers
+from .models import *
+
+
+class WarriorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Warrior
+        fields = "__all__"
+</code></pre></div>
+<p>Далее необходимо создать URL-адрес, с которого пользователь сможет получить доступ к этому методу.</p>
+<p>Необходимо создать файл warriors_app/urls.py и вставить следующий код:</p>
+<div class="highlight"><pre><span></span><code>from django.urls import path
+from .views import *
+
+app_name = "warriors_app"
+
+urlpatterns = [
+    path('/warriors/', WarriorAPIView.as_view()),
+]
+</code></pre></div>
+<p>Необходимо импортировать url-файл приложения в проект. В папке проекта изменить файл urls.py:</p>
+<div class="highlight"><pre><span></span><code>urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('war/', include('warriors_app.urls')),
+]
+</code></pre></div>
+<p>Запустим и посмотрим на результат</p>
+<p><img alt="" src="../images/war-warriors.png" /></p>
+<p>HTTP 200 OK — сервер работает корректно, запрос выполнен успешно.</p>
+<p>JSON-ответ — в теле ответа пришел объект, внутри которого ключ "Warriors" указывает на пустые квадратные скобки []</p>
+<p>Это означает, что сам API-эндпоинт /war/warriors/ настроен и работает правильно, но в базе данных проекта Django сейчас нет ни одной записи о воинах (warriors)</p>
+<p>На данный момент реализован API, через который можно просматривать информацию обо всех воинах в базе данных.</p>
+<p>В примере выше был рассмотрен метод GET, позволяющий получить данные. Далее рассмотрен метод POST, позволяющий отправить данные на сервер.</p>
+<p><img alt="" src="../images/prof_create.png" /></p>
+<p>Я создала запись
+<code>{
+    "profession": {
+        "title": "Разработчик",
+        "description": "Пишет код на Python и Django, создавая мощные веб-приложения"
+    }
+}</code></p>
+<h4 id="_1">Практика</h4>
+<p>Реализовать эндпоинты для добавления и просмотра скилов методом, описанным в пункте выше.</p>
+<p>Используем модель skill</p>
+<p><div class="highlight"><pre><span></span><code>class Skill(models.Model):
+    """
+    Описание умений
+    """
+    title = models.CharField(max_length=120, verbose_name='Наименование')
+
+    def __str__(self):
+        return self.title
+ ```
+
+1) Сделаю в начале добавление post, чтобы было на что смотреть при методе get
+</code></pre></div>
+class SkillCreateView(APIView):
+    def post(self, request):
+        skill = request.data.get("skill")
+        serializer = SkillCreateSerializer(data=skill)</p>
+<pre><code>    if serializer.is_valid(raise_exception=True):
+        skill_saved = serializer.save()
+    return Response({"Success": "Skill '{}' created succesfully.".format(skill_saved.title)})
+</code></pre>
+<p>class SkillCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Skill
+        fields = "<strong>all</strong>"
+<div class="highlight"><pre><span></span><code>Вот получившийся вариант, протестируем его в нашем приложении.
+Только перед этим необходимо прописать пути urls.
+`path('skill/create/', SkillCreateView.as_view()),`
+</code></pre></div>
+{
+    "skill": {
+        "title": "Стрельба из лука"
+    }
+}
+<div class="highlight"><pre><span></span><code>![](images/skill_create1.png)
+
+![](images/skill_create2.png)
+
+
+Дополнительно добавлю еще навыки, чтобы вывод казался информативнее
+
+2) Теперь реализуем get() - просмотр всех скиллов
+</code></pre></div>
+class SkillAPIView(APIView):
+    def get(self, request):
+        skills = Skill.objects.all()
+        serializer = SkillSerializer(skills, many=True)
+        return Response({"Skills": serializer.data})</p>
+<p>class SkillSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Skill
+        fields = "<strong>all</strong>"
+<div class="highlight"><pre><span></span><code>Пропишем путь в urls.
+
+`path('skills/', SkillAPIView.as_view()),`
+
+![](images/skills_get.png)
+
+
+### Сериализация
+
+Сериализация — это процесс перевода какой-либо структуры данных в последовательность битов.
+
+В зависимости от применяемого набора правил на выходе получается некая текстовая строка, которая будет оформлена по каким-то правилам. Этот набор правил называется форматом.
+
+
+Главное отличие между serializers.Serializer и serializers.ModelSerializer заключается в уровне автоматизации работы с базой данных: базовый Serializer требует ручного описания каждого поля, всех правил валидации и самостоятельной реализации методов сохранения (create и update), дублируя тем самым структуру из models.py, тогда как ModelSerializer автоматически генерирует поля и стандартную логику сохранения на основе указанной модели Django, что значительно сокращает объем кода и ускоряет разработку типовых CRUD-эндпоинтов.
+
+
+
+### Практическое задание
+
+Реализовать эндпоинты:
+
+1) Вывод полной информации о всех воинах и их профессиях (в одном запросе).
+
+Чтобы реализовать вывод всех воинов вместе с их профессиями в одном запросе, нужно связать два сериализатора(сделать один вложенный в другой) и создать для них представление на базе ListApiView.
+</code></pre></div>
+class WarriorProfessionSerializer(serializers.ModelSerializer):
+    profession = ProfessionCreateSerializer()
+    race = serializers.CharField(source="get_race_display", read_only=True)</p>
+<pre><code>class Meta:
+    model = Warrior
+    fields = ["id", "name", "race", "level", "profession"]
+</code></pre>
+<p>class WarriorProfessionListView(generics.ListAPIView):
+    serializer_class = WarriorProfessionSerializer
+    queryset = Warrior.objects.all()
+<div class="highlight"><pre><span></span><code>Добавим маршрут в urls.py
+
+
+path('warriors/professions/', WarriorProfessionListView.as_view()
+
+Сейчас выдается пустота, потому что данные не заполнены, я их быстро заполню с помощью админ-панели, но для начала нада зарегистрировать модели в admin.py
+</code></pre></div>
+from django.contrib import admin
+from .models import Warrior, Profession, Skill, SkillOfWarrior</p>
+<p>admin.site.register(Warrior)
+admin.site.register(Profession)
+admin.site.register(Skill)
+admin.site.register(SkillOfWarrior)</p>
+<p><div class="highlight"><pre><span></span><code>![](images/pr_3.2_1.png)
+
+2) Вывод полной информации о всех воинах и их скилах (в одном запросе).
+
+Будем действовать по аналогии.
+
+skill = models.ManyToManyField('Skill', verbose_name='Умения', through='SkillOfWarrior')
+
+Благодаря этой строчке в models.py. Таблица SkillOfWarrior работает как «мост» между воинами и умениями, храня пары их ID. Когда сериализатор запрашивает поле skill, Django сам находит все нужные связи в этой промежуточной таблице и подтягивает готовые названия умений для каждого воина.
+
+
+![](images/pr_3.2_2.png)
+
+3) Вывод полной информации о воине (по id), его профессиях и скилах.
+</code></pre></div>
+class WarriorSkillProfessionSerializer(serializers.ModelSerializer):
+    profession = ProfessionCreateSerializer()
+    skill = SkillCreateSerializer(many=True)
+    race = serializers.CharField(source="get_race_display", read_only=True)</p>
+<pre><code>class Meta:
+    model = Warrior
+    fields = "__all__"
+</code></pre>
+<p>class WarriorSkillProfessionListView(generics.ListAPIView):
+    serializer_class = WarriorSkillProfessionSerializer
+    queryset = Warrior.objects.all()</p>
+<p><div class="highlight"><pre><span></span><code>![](images/pr_3.2_3.png)
+
+4) Удаление воина по id.
+
+
+Для удаления будем использовать generic-метод DestroyAPIView.
+
+DestroyAPIView — используется для эндпоинтов только для удаления одного экземпляра модели. Предоставляет delete-обработчик метода. Расширяется: GenericAPIView, DestroyModelMixin.
+
+![](images/pr_3.2_4.1.png)
+
+![](images/pr_3.2_4.2.png)
+
+Удалили война с id 1, остался воин с id 2.
+
+Но было неудобно, что при удалении нне видишь информацию о войне, можно случайно самостоятельно удалить не тот объект.
+
+Для предпросмотра и удаления в Django REST Framework вместо DestroyAPIView используют класс generics.RetrieveDestroyAPIView
+
+- Предпросмотр (Retrieve). При открытии ссылки срабатывает метод GET, и сервер показывает полную анкету бойца. Вы точно видите имя, уровень, профессию и скиллы того, кого собираетесь удалить.
+- Удаление (Destroy). Сверху справа остаётся красная кнопка DELETE, которая удаляет этого воина из базы.
+
+
+RetrieveDestroyAPIView — используется для чтения или удаления одного экземпляра модели. Предоставляет get и delete обработчики методов. Расширяется: GenericAPIView, RetrieveModelMixin, DestroyModelMixin.
+
+Попробуем удалить война с id 2.
+
+![](images/pr_3.2_4.3.png)
+
+Отлично, сразу вижу информацию об удаляемом войне.
+
+![](images/pr_3.2_4.4.png)
+
+Последний доступный воин удален.
+
+5) Редактирование информации о воине.
+
+
+Создам через админ панель воина.
+
+Буду использоввать его RetrieveUpdateDestroyAPIView — используется для чтения-записи-удаления одного экземпляра модели. Обеспечивает get, put, patch и delete обработчики методов. Расширяется: GenericAPIView, RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin.
+
+Так как намного нагляднее.
+</code></pre></div>
+class WarriorUpdate(generics.RetrieveUpdateAPIView):
+    queryset = Warrior.objects.all()
+    serializer_class = WarriorSerializer
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+ path('warriors/update/<int:pk>/', WarriorUpdateView.as_view()),
+<div class="highlight"><pre><span></span><code>![](images/pr_3.2_5.1.png)
+
+Давайте поменяем имя Витьку на Виктор.
+
+![](images/pr_3.2_5.2.png)
+![](images/pr_3.2_5.3.png)
+
+Я еще заметила, что например в поле профессия, у меня он отображает в виде объектов и их номеров, чтобы это исправить необходимо, добавить метод def __str__()
+</code></pre></div>
+class Profession(models.Model):
+    """
+    Описание профессии
+    """
+    title = models.CharField(max_length=120, verbose_name='Название')
+    description = models.TextField(verbose_name='Описание')</p>
+<pre><code># Добавляем этот метод:
+def __str__(self):
+    return self.title
+</code></pre>
+<div class="highlight"><pre><span></span><code># Реализация лабораторной работы
+
+Для начала я повторю все действия с созданием проекта и приложения, далее мне необходимо описать модели моей базы данных, схему которой я создавала ранее и выполнить миграции.
+
+1) Реализовать модель базы данных средствами Django ORM.
+
+```commandline
+from django.db import models
+from django.db import models
+
+
+class CompanyType(models.Model):
+    company_type_id = models.AutoField(primary_key=True)
+    type_name = models.CharField(max_length=20, verbose_name="Тип компании")
+
+    def __str__(self):
+        return self.type_name
+
+
+class Company(models.Model):
+    company_id = models.AutoField(primary_key=True)
+    company_name = models.CharField(max_length=255, verbose_name="Название компании")
+    company_type = models.ForeignKey(
+        CompanyType,
+        on_delete=models.CASCADE,
+        related_name="companies",
+        verbose_name="Тип компании"
+    )
+
+    def __str__(self):
+        return self.company_name
+
+
+class AircraftType(models.Model):
+    aircraft_type_id = models.AutoField(primary_key=True)
+    model = models.CharField(max_length=50, verbose_name="Модель")
+    manufacturer_name = models.CharField(max_length=50, verbose_name="Производитель")
+    description = models.CharField(max_length=255, null=True, blank=True, verbose_name="Описание")
+
+    def __str__(self):
+        return f"{self.manufacturer_name} {self.model}"
+
+
+class Aircraft(models.Model):
+    aircraft_id = models.AutoField(primary_key=True)
+    aircraft_register_number = models.CharField(max_length=15, verbose_name="Бортовой номер")
+    aircraft_type = models.ForeignKey(
+        AircraftType,
+        on_delete=models.CASCADE,
+        related_name="aircrafts",
+        verbose_name="Тип воздушного судна"
+    )
+    seat_count = models.IntegerField(verbose_name="Количество мест")
+    flight_speed = models.DecimalField(
+        max_digits=8, decimal_places=2, null=True, blank=True, verbose_name="Крейсерская скорость"
+    )
+    technical_status = models.CharField(max_length=20, null=True, blank=True, verbose_name="Техническое состояние")
+    company = models.ForeignKey(
+        Company,
+        on_delete=models.CASCADE,
+        related_name="aircrafts",
+        verbose_name="Авиакомпания"
+    )
+
+    def __str__(self):
+        return f"{self.aircraft_register_number} ({self.aircraft_type.model})"
+
+
+class Country(models.Model):
+    country_id = models.AutoField(primary_key=True)
+    country_name = models.CharField(max_length=100, null=True, blank=True, verbose_name="Страна")
+
+    def __str__(self):
+        return self.country_name or f"Country #{self.country_id}"
+
+
+class City(models.Model):
+    city_id = models.AutoField(primary_key=True)
+    city_name = models.CharField(max_length=100, null=True, blank=True, verbose_name="Город")
+    country = models.ForeignKey(
+        Country,
+        on_delete=models.CASCADE,
+        related_name="cities",
+        verbose_name="Страна"
+    )
+
+    def __str__(self):
+        return self.city_name or f"City #{self.city_id}"
+
+
+class Airport(models.Model):
+    airport_id = models.AutoField(primary_key=True)
+    airport_name = models.CharField(max_length=200, null=True, blank=True, verbose_name="Название аэропорта")
+    city = models.ForeignKey(
+        City,
+        on_delete=models.CASCADE,
+        related_name="airports",
+        verbose_name="Город"
+    )
+    company = models.ForeignKey(
+        Company,
+        on_delete=models.CASCADE,
+        related_name="airports",
+        verbose_name="Управляющая компания"
+    )
+
+    def __str__(self):
+        return self.airport_name or f"Airport #{self.airport_id}"
+
+
+class Route(models.Model):
+    route_id = models.AutoField(primary_key=True)
+    departure_point = models.ForeignKey(
+        Airport,
+        on_delete=models.CASCADE,
+        related_name="departure_routes",
+        verbose_name="Аэропорт вылета"
+    )
+    destination_point = models.ForeignKey(
+        Airport,
+        on_delete=models.CASCADE,
+        related_name="destination_routes",
+        verbose_name="Аэропорт назначения"
+    )
+    distance = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True, verbose_name="Дистанция (км)"
+    )
+
+    def __str__(self):
+        return f"{self.departure_point} -&gt; {self.destination_point}"
+
+
+class Employee(models.Model):
+    employee_id = models.AutoField(primary_key=True)
+    full_name = models.CharField(max_length=255, verbose_name="ФИО")
+    birth_date = models.DateTimeField(verbose_name="Дата рождения")
+    education = models.CharField(max_length=200, null=True, blank=True, verbose_name="Образование")
+    work_experience = models.IntegerField(null=True, blank=True, verbose_name="Стаж работы (лет)")
+    passport = models.CharField(max_length=10, verbose_name="Паспорт")
+    company = models.ForeignKey(
+        Company,
+        on_delete=models.CASCADE,
+        related_name="employees",
+        verbose_name="Компания"
+    )
+    start_date = models.DateField(null=True, blank=True, verbose_name="Дата приёма")
+    end_date = models.DateField(null=True, blank=True, verbose_name="Дата увольнения")
+    employment_status = models.CharField(max_length=30, null=True, blank=True, verbose_name="Статус занятости")
+
+    def __str__(self):
+        return self.full_name
+
+
+class Position(models.Model):
+    position_id = models.AutoField(primary_key=True)
+    position_name = models.CharField(max_length=100, null=True, blank=True, verbose_name="Должность")
+
+    def __str__(self):
+        return self.position_name or f"Position #{self.position_id}"
+
+
+class Crew(models.Model):
+    crew_id = models.AutoField(primary_key=True)
+    crew_name = models.CharField(max_length=30, null=True, blank=True, verbose_name="Название экипажа")
+    members = models.ManyToManyField(
+        Employee,
+        through="CrewMember",
+        related_name="crews",
+        verbose_name="Члены экипажа"
+    )
+
+    def __str__(self):
+        return self.crew_name or f"Crew #{self.crew_id}"
+
+
+class CrewMember(models.Model):
+    crew = models.ForeignKey(Crew, on_delete=models.CASCADE, verbose_name="Экипаж")
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, verbose_name="Сотрудник")
+    position = models.ForeignKey(Position, on_delete=models.CASCADE, verbose_name="Должность в экипаже")
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["crew", "employee"], name="unique_crew_employee")
+        ]
+
+    def __str__(self):
+        return f"{self.employee.full_name} — {self.position.position_name} ({self.crew.crew_name})"
+
+
+class Flight(models.Model):
+    flight_id = models.AutoField(primary_key=True)
+    flight_number = models.CharField(max_length=10, verbose_name="Номер рейса")
+    route = models.ForeignKey(
+        Route,
+        on_delete=models.CASCADE,
+        related_name="flights",
+        verbose_name="Маршрут"
+    )
+    aircraft = models.ForeignKey(
+        Aircraft,
+        on_delete=models.CASCADE,
+        related_name="flights",
+        verbose_name="Воздушное судно"
+    )
+    crew = models.ForeignKey(
+        Crew,
+        on_delete=models.CASCADE,
+        related_name="flights",
+        verbose_name="Экипаж"
+    )
+    departure_datetime = models.DateTimeField(null=True, blank=True, verbose_name="Время вылета")
+    arrival_datetime = models.DateTimeField(null=True, blank=True, verbose_name="Время прилёта")
+    sold_tickets = models.IntegerField(null=True, blank=True, verbose_name="Продано билетов")
+    admitted_employees = models.ManyToManyField(
+        Employee,
+        through="Admission",
+        related_name="admitted_flights",
+        verbose_name="Допущенные сотрудники"
+    )
+
+    def __str__(self):
+        return f"Рейс {self.flight_number} ({self.route})"
+
+
+class TransitStop(models.Model):
+    transit_stop_id = models.AutoField(primary_key=True)
+    flight = models.ForeignKey(
+        Flight,
+        on_delete=models.CASCADE,
+        related_name="transit_stops",
+        verbose_name="Рейс"
+    )
+    airport = models.ForeignKey(
+        Airport,
+        on_delete=models.CASCADE,
+        related_name="transit_stops",
+        verbose_name="Аэропорт пересадки"
+    )
+    arrival_datetime = models.DateTimeField(null=True, blank=True, verbose_name="Время прибытия")
+    departure_datetime = models.DateTimeField(null=True, blank=True, verbose_name="Время отправления")
+    stop_number = models.IntegerField(null=True, blank=True, verbose_name="Порядковый номер остановки")
+
+    def __str__(self):
+        return f"Остановка #{self.stop_number} рейса {self.flight.flight_number} в {self.airport}"
+
+
+class Admission(models.Model):
+    flight = models.ForeignKey(Flight, on_delete=models.CASCADE, verbose_name="Рейс")
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE, verbose_name="Сотрудник")
+    admission_status = models.BooleanField(verbose_name="Статус допуска")
+    admission_date = models.DateField(null=True, blank=True, verbose_name="Дата выдачи допуска")
+    admission_until = models.DateField(null=True, blank=True, verbose_name="Действителен до")
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=["flight", "employee"], name="unique_flight_employee_admission")
+        ]
+
+    def __str__(self):
+        return f"Допуск {self.employee.full_name} на рейс {self.flight.flight_number}: {self.admission_status}"
+</code></pre></div>
+<p>Выполню миграции:</p>
+<p><code>python manage.py makemigrations</code></p>
+<p><code>python manage.py migrate</code></p>
+<p>Результат:</p>
+<div class="highlight"><pre><span></span><code>Migrations for 'airport':
+  airport\migrations\0001_initial.py
+    + Create model AircraftType
+    + Create model City
+    + Create model Company
+    + Create model CompanyType
+    + Create model Country
+    + Create model Crew
+    + Create model Position
+    + Create model Airport
+    + Create model Aircraft
+    + Add field company_type to company
+    + Add field country to city
+    + Create model Employee
+    + Create model CrewMember
+    + Add field members to crew
+    + Create model Admission
+    + Create model Flight
+    + Add field flight to admission
+    + Create model Route
+    + Add field route to flight
+    + Create model TransitStop
+    + Create constraint unique_flight_employee_admission on model admission
+    + Create constraint unique_crew_employee on model crewmember
+(tutorial-env) PS C:\Users\Ekaterina\Desktop\ITMO_ICT_WebDevelopment_2026-2027\students\
+K3341\laboratory_works\Stepanova_Ekaterina\laboratory_work_3\lab3&gt; python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, airport, auth, contenttypes, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying airport.0001_initial... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying auth.0012_alter_user_first_name_max_length... OK
+  Applying sessions.0001_initial... OK
+</code></pre></div>
+<p>Проверим с помощью DB Browser </p>
+<p><img alt="" src="../images/DB_models.png" /></p>
+<p>2) Реализовать логику работы API средствами Django REST Framework (используя методы сериализации).</p>
+<p>Чтобы настроить  REST API с помощью Django REST Framework (DRF), нужно настроить три ключевых компонента: сериализаторы (переводят объекты Django ORM в формат JSON и обратно), представления (обрабатывают HTTP-запросы GET, POST, PUT, DELETE) и маршруты (привязывают URL-адреса к представлениям).</p>
+<p>Создам отдельный файл с сериализаторами serializers.py</p>
+<p>Сериализатор превращает сложные объекты моделей django в обычный формат json(для отправки клиенту) и наоборот - проверяет входящий json и превращает его обратно в запись базы данных.</p>
+<p>При созданиии пойду прям по порядку моделей, чтобы не выдумывать ничего лишнего.</p>
+<p>У меня будут универсальные сериализаторы на запись(POST, PUT, PATCH, DELETE) и на чтение (GET).</p>
+<p>Будут просто на GET с пометкой Detail.</p>
+<p>Будут только на создание с пометкой Create.</p>
+<p>После создания сериализаторов приступаем к созданию представлений views.py</p>
+<p>Нужно реализовать CRUD-операции для реализации буду использовать generics.</p>
+<p>Вот пример для компаний:</p>
+<div class="highlight"><pre><span></span><code>class CompanyListView(generics.ListAPIView):
+    serializer_class = CompanySerializer
+    queryset = Company.objects.all()
+
+class CompanyCreateView(generics.CreateAPIView):
+    serializer_class = CompanySerializer
+    queryset = Company.objects.all()
+
+class CompanyUpdateView(generics.RetrieveUpdateAPIView):
+    serializer_class = CompanySerializer
+    queryset = Company.objects.all()
+</code></pre></div>
+<p>Добавим пути в urls.py</p>
+<p>Для CompanyType я бы хотела сократить классы во view с 4 до 2,
+один класс будет для просмотра + создания, второй - просмотр, удаление и обновление</p>
+<p>Я создала 3 типа компаний, далее я эти типы применила при создании самих компаний.</p>
+<p><img alt="" src="../images/L_create_companies.png" /></p>
+<p><img alt="" src="../images/L_companies.png" /></p>
+<p>Я реализовала данный пункт.</p>
+<p>2) Подключить регистрацию / авторизацию по токенам / вывод информации о текущем пользователе средствами Djoser.</p>
+<p><img alt="" src="../images/th_1.png" />
+<img alt="" src="../images/th_2.png" />
+<img alt="" src="../images/th_3.png" /></p>
+<p>Для реализации буду использовать следующую документацию:</p>
+<p><code>https://djoser.readthedocs.io/en/latest/getting_started.html</code></p>
+<ol>
+<li>Необходимо установить djoser</li>
+</ol>
+<p><code>pip install -U djoser</code></p>
+<p><img alt="" src="../images/inst_djose.png" /></p>
+<p>После установки djoser его необходимо непосредственно подключить к нашему проекту.</p>
+<ol>
+<li>В settings.py INSTALLED_APPS прописываем djoser и rest_framework.authtoken(для хранения токенов в бд)</li>
+</ol>
+<p><img alt="" src="../images/inst_app_djoser.png" /></p>
+<div class="highlight"><pre><span></span><code>INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken'
+    'airport',
+    'djoser'
+]
+</code></pre></div>
+<p>Так как в программе появилась новая модель, необходимо сделать миграцию для нее.</p>
+<p>Теперь нужно сделать это прописать необходимые маршруты.(https://djoser.readthedocs.io/en/latest/authentication_backends.html)</p>
+<p><img alt="" src="../images/L_urls.png" /></p>
+<p>И поледнее, необходимо добавить rest_framework.authentication.TokenAuthentication в Django REST Framework authentication strategies tuple(оно находится в settings.py):</p>
+<div class="highlight"><pre><span></span><code>REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+}
+</code></pre></div>
+<p>Этот словарь - главная панель управления безопасностью моего API. Он состоит из двух настроек, которые отвечают на 2 разных вопроса:
+"Кто ты?" и "Что тебе разрешено?".</p>
+<p>DEFAULT_AUTHENTICATION_CLASSES (Кто ты?)</p>
+<p>Эта настройка объясняет Django REST Framework, какими способами пользователь может доказать, что он вошел в систему:</p>
+<p>• TokenAuthentication — учит сервер понимать авторизацию по токенам. Когда ты в Postman отправляешь заголовок Authorization: Token &lt;твой_ключ&gt;, именно этот класс проверяет ключ по базе данных и понимает, какой именно пользователь делает запрос (без этой строчки /auth/users/me/ не заработает).</p>
+<p>• SessionAuthentication — сохраняет привычный вход по логину и паролю через сессии и куки браузера. Это нужно, чтобы ты могла пользоваться стандартной админкой Django и встроенным веб-интерфейсом DRF в браузере.</p>
+<p>DEFAULT_PERMISSION_CLASSES (Что тебе разрешено?)</p>
+<p>Эта настройка задает глобальные права доступа ко всем эндпоинтам по умолчанию:</p>
+<p>• AllowAny — разрешает доступ всем пользователям (даже неавторизованным гостям). Мы ставим это значение во время разработки, чтобы ты могла спокойно тестировать свои рейсы, самолеты и запросы без постоянных ошибок доступа (401 Unauthorized).</p>
+<p>• Важный нюанс: даже при включенном AllowAny защищенные эндпоинты самого Djoser (например, /auth/users/me/) имеют свои встроенные правила и всё равно потребуют токен. А если перед сдачей работы понадобится закрыть всё API от гостей, достаточно будет поменять AllowAny на IsAuthenticated (доступ только с токеном).</p>
+<p>Настройка DEFAULT_RENDERER_CLASSES в словаре REST_FRAMEWORK указывает, в каком формате сервер должен возвращать ответы клиенту (например, в чистом JSON или в виде красивой HTML-страницы в браузере).</p>
+<h3 id="postman">Используя Postman</h3>
+<ol>
+<li>Запускаем сервер: python manage.py runserver</li>
+</ol>
+<p>Я решила поменять <code>базовый маршрут для авторизации и некоторых действий с пользователями</code>, чтобы не путаться на первых парах:</p>
+<p><code>path('api/v1/auth/', include('djoser.urls')),</code></p>
+<ol>
+<li>Перейдем по этому маршруту</li>
+</ol>
+<p><img alt="" src="../images/api_v1_auth.png" /></p>
+<p>Нам выдали вот такой доступный адрес, перейдем по нему:</p>
+<p><img alt="" src="../images/pereshli.png" /></p>
+<p>Вот что означают основные элементы на экране:</p>
+<p>• HTTP 401 Unauthorized (в сером блоке): Сервер запретил просмотр списка всех пользователей (GET-запрос), так как ты еще не вошла в систему и не передала токен.</p>
+<p>• Форма регистрации внизу (Email, Username, Password): Это интерфейс для POST-запроса на регистрацию нового аккаунта — он открыт для всех, поэтому ты можно заполнить поля и нажать кнопку POST, чтобы создать пользователя.</p>
+<p>Я попробовала ввести поту, но при post-запросе, сттал ругаться на пароль, придумаю какой-то посложнее.</p>
+<p><img alt="" src="../images/ekaterina.png" /></p>
+<p>И нам возвращается список всех пользователей, которые зарегистрированы в системе.</p>
+<p>Сейчас у нас есть только один пользователь - <code>администратор</code>.</p>
+<p>Так вот с помощью пакета djoser мы можем выполнять не только авторизацию, аутентификацию, но и регистрацию пользователей, его удаление, изменение данных и тд.</p>
+<p>Т.е. Пакет djoser поддерживает самые разные действия, чтобы узнать какие, мы в документации переходим в раздел BaseEndpoints (https://djoser.readthedocs.io/en/latest/base_endpoints.html)</p>
+<p><img alt="" src="../images/doc_baseendpoints.png" /></p>
+<p>И уже на этой странице подробно описано, например, создание пользователя User Create.</p>
+<p><img alt="" src="../images/user_create.png" /></p>
+<ul>
+<li>User Activate - Сделать пользователя активным</li>
+<li>User Delete - удалить пользователя</li>
+</ul>
+<p>И так далее, здесь много разных возможностей.</p>
+<h4 id="user-create">Давайте создадим нового пользователя, используя User Create</h4>
+<p>Значит, мы по этому адресу <code>/users/</code> должны отправить post-запрос</p>
+<p><img alt="" src="../images/L_ceate_user.png" /></p>
+<p>С определенными даннными:</p>
+<div class="highlight"><pre><span></span><code>{{ User.USERNAME_FIELD }}
+
+{{ User.REQUIRED_FIELDS }}
+
+password
+
+re_password
+</code></pre></div>
+<p>Теперь откроем Postman, т.е. мы будем имитировать отправку post-запроса</p>
+<ol>
+<li>нажимаем в приложении на создание нового запроса </li>
+</ol>
+<p><img alt="" src="../images/L_cr_request.png" /></p>
+<ol>
+<li>Вводим базовый адрес + users <code>http://127.0.0.1:8000/api/v1/auth/users/</code> и выбираем Post-запрос</li>
+</ol>
+<p><img alt="" src="../images/L_url_users_post.png" /></p>
+<ol>
+<li>Нажимаем body и выбираем form-data</li>
+</ol>
+<p><img alt="" src="../images/postman_3.png" /></p>
+<ol>
+<li>Заполняем</li>
+</ol>
+<p>Что от нас ждет djoser при регистрации пользователя, следуя документации?</p>
+<p>• {{ User.USERNAME_FIELD }} — это главное поле для входа. В стандартной модели Django оно называется username.</p>
+<p>• {{ User.REQUIRED_FIELDS }} — это список дополнительных обязательных полей при создании суперпользователя. В стандартной модели Django там указан только email (но при обычной регистрации через API Djoser делает его необязательным, если не включена активация по почте).</p>
+<p>• password — пароль (пишется буквально так: password).</p>
+<p>• re_password — повтор пароля. В синей плашке Note сверху написано: «re_password требуется только если в настройках USER_CREATE_PASSWORD_RETYPE установлено значение True». По умолчанию оно False, поэтому это поле передавать не нужно.</p>
+<p>• {{ User._meta.pk.name }} (в столбце Response) — это название первичного ключа (ID) в ответе сервера. В стандартной модели оно называется id.</p>
+<p>Итог, можно отправить username, password и (при желании) email</p>
+<p><img alt="" src="../images/pushkin_create.png" /></p>
+<ol>
+<li>Регистрируем пользователя - нажимаем send</li>
+</ol>
+<p><img alt="" src="../images/ans_pushkin_create.png" /></p>
+<p>Статус <code>201</code>, наш пользователь успешно зарегистрирован.</p>
+<p>Убедимся в этом, перейдем в браузер и посмотрим на список пользователей.</p>
+<p>Через админ-панель:</p>
+<p><img alt="" src="../images/admin_users.png" /></p>
+<p>Через Browsable API (Django REST Framework):</p>
+<p><img alt="" src="../images/Browsable%20API%20%28Django%20REST%20Framework%29.png" /></p>
+<h4 id="apushkin">Добавим авторизацию с помощью нового пользователя A.Pushkin</h4>
+<p>Как это сделать описано в документации в разделе Token Endpoints(https://djoser.readthedocs.io/en/latest/token_endpoints.html)</p>
+<p>Маршрут, чтобы войти в систему:</p>
+<p><img alt="" src="../images/token_create.png" /></p>
+<p>Маршрут, чтобы выйти из системы:</p>
+<p><img alt="" src="../images/token_destroy.png" /></p>
+<p>В начале нужно авторизоваться, в postman откроем вкладку нового запроса и пропишем туда этот маршрут <code>http://127.0.0.1:8000/auth/token/login/</code>.</p>
+<p>Почему именно такой:</p>
+<p>В urls.py мы прописывали <code>re_path(r'^auth/', include('djoser.urls.authtoken')),</code>, эта строчка отвечает за авторизацию по токенам.</p>
+<p>А дальше добавляется к этому пути токен и логин.</p>
+<p>И тут мы тоже должны отправить post-запрос, в body, нам нужно прописать username и пароль.</p>
+<p>Вот для удобства данные созданного пользователя:</p>
+<div class="highlight"><pre><span></span><code>A.Pushkin
+BmNkVsK_1825
+nashe_vse@ruslit.ru
+</code></pre></div>
+<p><img alt="" src="../images/login_post_pushkin.png" /></p>
+<p>Отправили запрос кнопкой send.</p>
+<p><img alt="" src="../images/pushkin_login_send.png" /></p>
+<p>Получили токен: "auth_token": "4e867d8d7e329548bf6f5ecc68a92fba6a6b6166"</p>
+<p>С помощью этого токена в последующем будет воспроизводиться аутентификация пользователя.</p>
+<p>Чтобы у меня данные о пользователях мог смотреть только авторизованный пользователь изменим клас таким образом:</p>
+<div class="highlight"><pre><span></span><code>class EmployeeListView(generics.ListAPIView):
+    serializer_class = EmployeeSerializer
+    queryset = Employee.objects.all()
+    permission_classes = (IsAuthenticated,)
+</code></pre></div>
+<p>Если я зашла и не авторизовалась:</p>
+<p><img alt="" src="../images/is_not_auth.png" /></p>
+<p>Если я авторизована в данной сессии:</p>
+<p><img alt="" src="../images/is_auth.png" /></p>
+<p>И то же амое будет в Postman, когда мы отправим этот запрос(http://127.0.0.1:8000/airport/employees/):</p>
+<p><img alt="" src="../images/postman_is_not_auth.png" /></p>
+<p>Для того, чтобы сервер нас принял, мы в заголовке(Headers), должны прописать ключ Authorization и указать наш токен:</p>
+<p><img alt="" src="../images/request_token.png" /></p>
+<p>Теперь, если мы сделаем запрос, то должны получить записи.</p>
+<p><img alt="" src="../images/list_employees_get.png" /></p>
+<p>Все верно, сервер воспринял нас как авторизованного пользователя.</p>
+<p>Если мы хотим выйти из системы, то вместо login нужно прописать logout.</p>
+<p><img alt="" src="../images/pushkin_logout.png" /></p>
+<p>При этом, если мы сейчас попробуем снова сделать запрос и вывести всех работников, то нам выдаст статус <code>недопустимый токен</code>, потому что мы вышли из системы.</p>
+<p><img alt="" src="../images/invalid_token.png" /></p>
+<p>На уровне каждого класса представлений, мы можем конкретизировать способ аутентификации пользователя.</p>
+<p>Если хотим только по токену, то в класс нужно добавить вот такую строчку: authentication_classes = (TokenAuthentication,)</p>
+<p>Для вывода вссей информации по пользователю:</p>
+<ol>
+<li>Создам сериализатор, который выводит все, кроме пароля</li>
+</ol>
+<p><div class="highlight"><pre><span></span><code>class UserDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Employee
+        # Выводим всю информацию о пользователе, кроме зашифрованного пароля
+        exclude = ['password']
+</code></pre></div>
+2. Создаем представление</p>
+<div class="highlight"><pre><span></span><code># Просмотр полной информации о конкретном пользователе по ID (строго по токену)
+class EmployeeDetailView(generics.RetrieveAPIView):
+    serializer_class = EmployeeSerializer
+    queryset = Employee.objects.all()
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (TokenAuthentication,)
+</code></pre></div>
+<ol>
+<li>Меняем маршрут на <code>path('employees/&lt;int:pk&gt;/', EmployeeDetailView.as_view()),</code></li>
+</ol>
+<p><img alt="" src="../images/%D1%82%D0%BE%D0%BA%D0%B5%D0%BD.png" /></p>
+<p>Здесь мы зашли по токену.</p>
+<p>И последнее вывод информации о текущем пользователе средствами Djoser.</p>
+<p>Для вывода информации о текущем пользователе djoser есть уже встроенный готовый эндпоинт /users/me</p>
+<p><img alt="" src="../images/users_me.png" /></p>
+<p><img alt="" src="../images/puskin_users_me.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+    
+  </body>
+</html>
